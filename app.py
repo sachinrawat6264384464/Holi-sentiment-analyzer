@@ -45,6 +45,7 @@ def predict():
                            prediction_text=sentiment,
                            bg_color=color)
 
-
 if __name__ == "__main__":
-    app.run(debug=True)
+    import os
+    port = int(os.environ.get("PORT", 5000))  # Render provides PORT env variable
+    app.run(host="0.0.0.0", port=port)
