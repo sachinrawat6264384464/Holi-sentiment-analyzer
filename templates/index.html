@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Holi Sentiment Analyzer</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+
+            background: {{ bg_color if bg_color else "linear-gradient(-45deg, red, orange, yellow, green, blue, violet)" }};
+            background-size: 400% 400%;
+            animation: gradientMove 8s ease infinite;
+            transition: background 0.5s ease-in-out;
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 80px auto;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            font-size: 36px;
+            color: white;
+            margin-bottom: 25px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.4);
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        .input-box {
+            width: 80%;
+            padding: 14px;
+            border-radius: 30px;
+            border: none;
+            outline: none;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .btn {
+            margin-top: 15px;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            background: white;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: black;
+            color: white;
+        }
+
+        .result {
+            margin-top: 25px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        /* Demo Card Styling */
+        .demo {
+            margin-top: 40px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            color: white;
+        }
+
+        .demo h2 {
+            margin: 8px 0;
+            font-weight: normal;
+        }
+
+        /* 📱 Tablet */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 25px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            .input-box {
+                width: 95%;
+                font-size: 14px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+        }
+
+        /* 📱 Mobile */
+        @media (max-width: 480px) {
+            .container {
+                margin: 40px 15px;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            .result {
+                font-size: 18px;
+            }
+
+            .demo {
+                padding: 15px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>🎨 Holi Color Sentiment Analyzer 🎨</h1>
+
+        <form action="/predict" method="post">
+            <input type="text" name="message"
+                   class="input-box"
+                   placeholder="Enter your Holi message..."
+                   required>
+            <br>
+            <button type="submit" class="btn">Predict</button>
+        </form>
+
+        {% if prediction_text %}
+            <div class="result">
+                {{ prediction_text }}
+            </div>
+        {% endif %}
+
+        <div class="demo">
+            <h2>🎉 Demo Lines</h2>
+            <h2>Happy Holi 🎨</h2>
+            <h2>Enjoy the Colors 🌈</h2>
+            <h2>Spread Love & Happiness ❤️</h2>
+            <h2> Holi hai ☹️😳</h2>
+            <h2>Festival of Joy 🥳</h2>
+        </div>
+    </div>
+
+</body>
+</html>
